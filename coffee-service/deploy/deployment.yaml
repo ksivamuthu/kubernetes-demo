@@ -17,6 +17,14 @@ spec:
       containers:
       - name: coffee-service
         image: coffee-service:latest
+        env: 
+          - name: MONGO_USER
+            value: root
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb
+                key: mongodb-root-password
         ports:
         - containerPort: 3000
         imagePullPolicy: IfNotPresent
